@@ -1,51 +1,45 @@
-import { Component } from 'react'; 
+import { useState, useEffect } from 'react'; 
 import SearchBox from './components/search-box/search-box.component';
 import CardList from './components/card-list/card-list.component';
 import './App.css';
 
 
-class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      users: [],
-      searchField: '',
-    };
-  }
+const App = () => {
+  const [searchField, setSearchField] = useState('');
+  const [users, setUsers] = useState([]);
+  const [filteredUsers, setFilteredUsers] = useState(users)
 
-  componentDidMount() {
+  useEffect(() => {
     fetch('https://jsonplaceholder.typicode.com/users')
-      .then(response => response.json())
-      .then(users => this.setState(() => ({ users })))
-      .catch(error => console.log(error));
-  }
+    .then(response => response.json())
+    .then(users => setUsers(users))
+    .catch(error => console.log(error));
+  }, []);
 
-
-  onSearchChange = (event) => {
-    const searchField = event.target.value.toLocaleLowerCase();
-    this.setState(() => {
-      return { searchField }
-    });
-  }
-
-  render() {
-    const { users, searchField } = this.state;
-    const { onSearchChange } = this;
-
-    const filteredUsers = users.filter(user => {
+  useEffect(() => {
+    const newFilteredUsers = users.filter(user => {
       return user.name.toLocaleLowerCase().includes(searchField);
     });
 
-    return (
-      <div className='App'> 
-        <SearchBox
-          className='users-search-box'
-          onChangeHandler={onSearchChange}
-          placeholder='search users' />
-        <CardList users={filteredUsers} />
-      </div>
-    );
-  } 
+    setFilteredUsers(newFilteredUsers);
+  }, [users, searchField])
+
+
+  const onSearchChange = (event) => {
+    const searchFieldString = event.target.value.toLocaleLowerCase();
+    setSearchField(searchFieldString);
+  };
+
+  return (
+    <div className='App'>
+      <h1 className='app-title'>Rolodex</h1>
+      <SearchBox
+        className='users-search-box'
+        onChangeHandler={onSearchChange}
+        placeholder='search users' />
+      <CardList users={filteredUsers} />
+    </div>
+  );
 }
 
 export default App;
