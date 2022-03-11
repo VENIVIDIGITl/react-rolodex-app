@@ -29,7 +29,12 @@ class App extends Component {
   }
 
   render() {
+    const { users, searchField } = this.state;
     const { onSearchChange } = this;
+
+    const filteredUsers = users.filter(user => {
+      return user.name.toLocaleLowerCase().includes(searchField);
+    });
 
     return (
       <div className='App'> 
@@ -37,7 +42,7 @@ class App extends Component {
           className='search-box'
           onChangeHandler={onSearchChange}
           placeholder='search users' />
-        <CardList />
+        <CardList users={filteredUsers} />
       </div>
     );
   } 

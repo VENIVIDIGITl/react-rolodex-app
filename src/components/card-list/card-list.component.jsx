@@ -1,13 +1,19 @@
-import { Component } from 'react'
+import { Component } from 'react';
 
 
 class CardList extends Component {
   render() {
     return (
       <div>
-        CardList Compoent
+        {this.props.users.map((user) => {
+          return (
+            <div key={user.id}>
+              <h1>{user.name}</h1>
+            </div>
+          );
+        })}
       </div>
-    )
+    );
   }
 }
 
