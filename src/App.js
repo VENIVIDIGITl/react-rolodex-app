@@ -10,10 +10,18 @@ const App = () => {
   const [filteredUsers, setFilteredUsers] = useState(users)
 
   useEffect(() => {
-    fetch('https://jsonplaceholder.typicode.com/users')
-    .then(response => response.json())
-    .then(users => setUsers(users))
-    .catch(error => console.log(error));
+    const fetchUsers = async () => {
+      try {
+        const response = await fetch('https://jsonplaceholder.typicode.com/users');
+        const usersData = await response.json();
+        setUsers(usersData);
+      } catch (error) {
+        console.log('ERROR: ', error);
+        throw new Error('Failed to fetch users data from API');
+      };
+    };
+
+    fetchUsers();
   }, []);
 
   useEffect(() => {
