@@ -1,13 +1,16 @@
-import { Component } from 'react'
+import { Component } from 'react';
 
 
 class SearchBox extends Component {
   render() {
     return (
-      <div>
-        SearchBox Compoent
-      </div>
-    )
+      <input
+        className={this.props.className}
+        type='search'
+        placeholder={this.props.placeholder}
+        onChange={this.props.onChangeHandler} 
+      />
+    );
   }
 }
 
