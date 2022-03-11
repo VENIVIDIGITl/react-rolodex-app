@@ -1,14 +1,23 @@
 import { Component } from 'react';
+import './card-list.styles.css';
 
 
 class CardList extends Component {
   render() {
+    const { users } = this.props;
+
     return (
-      <div>
-        {this.props.users.map((user) => {
+      <div className='card-list'>
+        {users.map((user) => {
+          const { name, email, id } = user;
           return (
-            <div key={user.id}>
-              <h1>{user.name}</h1>
+            <div key={id} className='card-container'>
+              <img 
+                alt={`${name}`}
+                src={`https://robohash.org/${id}?set=set2&size=180x180`}
+              />
+              <h2>{name}</h2>
+              <p>{email}</p>
             </div>
           );
         })}
