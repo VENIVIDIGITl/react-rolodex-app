@@ -1,8 +1,11 @@
+import { FontAwesomeIcon as FAIcon } from '@fortawesome/react-fontawesome';
+import { faEnvelope, faPhone, faLocationDot } from '@fortawesome/free-solid-svg-icons'
 import './card.styles.css';
 
 
 const Card = ({ user }) => {
-  const { id, name, email, cell, picture, location } = user;
+  const { id, name, email, cell, picture } = user;
+  const { city, state, country } = user.location
 
   return (
     <div key={id} className='card-container'>
@@ -10,10 +13,23 @@ const Card = ({ user }) => {
         alt={`${name}`}
         src={picture}
       />
-      <h2>{name}</h2>
-      <p>{email}</p>
-      <p>{cell}</p>
-      <p>{location.city}, {location.state}, {location.country}</p>
+      <div className='contact-info'>
+        <h2>{name}</h2>
+        <div>
+          <div className='contact-detail'>
+            <FAIcon icon={faEnvelope} className='icon' />
+            <p>{email}</p>
+          </div>
+          <div className='contact-detail'>
+            <FAIcon icon={faPhone} className='icon' />
+            <p>{cell}</p>
+          </div>
+          <div className='contact-detail'>
+            <FAIcon icon={faLocationDot} className='icon' />
+            <p>{city}, {state}, {country}</p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
