@@ -1,10 +1,15 @@
 .card-container {
+  background-color: #fff;
+  color:#222936;
+  font-size: 15px;
+  height: 370px;
+  max-width: 250px;
   display: flex;
   flex-direction: column;
-  background-color: #95dada;
-  border: 1px solid grey;
+  padding: 20px;
+  border: 1px solid royalblue;
   border-radius: 5px;
-  padding: 25px;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
   cursor: pointer;
   -moz-osx-font-smoothing: grayscale;
   backface-visibility: hidden;
@@ -14,4 +19,83 @@
 
 .card-container:hover {
   transform: scale(1.05);
+}
+
+.card-container img {
+  width: 175px;
+  height: 175px;
+  border-radius: 4px;
+  margin: 0 auto;
+}
+
+.card-container .contact-info {
+  text-align: left;
+}
+
+.card-container .contact-info h2 {
+  text-align: center;
+}
+
+.contact-info .icon {
+  color: #5882ff;
+  margin-right: 10px;
+}
+
+.contact-detail {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.contact-info .icon + p {
+  margin: 5px 0;
+}
+
+
+@media(max-width: 1050px) {
+  .card-container {
+    padding: 20px;
+  }
+}
+
+@media(max-width: 740px) {
+  .card-container {
+    padding: 15px;
+  }
+}
+
+@media(max-width: 650px) {
+  .card-container {
+    flex-direction: row;
+    max-width: 500px;
+    max-height: 200px;
+    align-items: center;
+    padding: 10px;
+  }
+
+  .card-container img {
+    width: 125px;
+    height: 125px;
+    border-radius: 50%;
+    margin: 0;
+  }
+
+  .card-container .contact-info {
+    margin-left: 25px;
+  }
+}
+
+@media(max-width: 460px) {
+  .card-container {
+    flex-direction: column;
+    max-width: 500px;
+    max-height: 340px;
+    align-items: center;
+    padding: 20px 10px 10px 10px;
+  }
+
+  .card-container .contact-info {
+    margin-left: 0;
+  }
 }

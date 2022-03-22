@@ -6,18 +6,94 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: linear-gradient(
-    to left, 
-    rgba(7, 27, 82, 1) 0%,
-    rgba(0, 128, 128, 1) 100%
-  );
+  
   text-align: center;
+  background-color: #f8f9fd;
+  
 }
 
 .app-title {
-  margin-top: 75px;
-  margin-bottom: 50px;
+  background-color: #f8f9fd;
+  border-bottom: 5px solid #4169e1;
+  width: 100%;
+  height: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  position: fixed;
+  z-index: 1;
+}
+
+.app-title h1 {
+  color: #4169e1;
   font-size: 76px;
   font-family: 'Pacifico';
-  color: #0ccac4;
+  letter-spacing: 4px;
+  position: relative;
+  border: none;
+}
+
+.app-title.scroll-active {
+  height: 80px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.app-title.app-title.scroll-active h1 {
+  width: 200px;
+  height: 100%;
+  font-size: 44px;
+  margin-left: 20px;
+  position: relative;
+}
+
+.card-list-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+@media(max-width: 650px) {
+  .app-title,
+  .app-title.app-title.scroll-active {
+    height: 80px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .app-title h1,
+  .app-title.app-title.scroll-active h1 {
+    font-size: 44px;
+    margin-left: 15px;
+  }
+}
+
+@media(max-width: 460px) {
+  .app-title,
+  .app-title.app-title.scroll-active {
+    height: 60px;
+  }
+  .app-title h1,
+  .app-title.app-title.scroll-active h1 {
+    font-size: 34px;
+    margin-left: 10px;
+  }
+}
+
+@media(max-width: 330px) {
+  .app-title,
+  .app-title.app-title.scroll-active {
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .app-title h1,
+  .app-title.app-title.scroll-active h1 {
+    display: none;
+  }
 }
