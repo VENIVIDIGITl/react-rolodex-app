@@ -9,12 +9,29 @@ const App = () => {
   const [users, setUsers] = useState([]);
   const [filteredUsers, setFilteredUsers] = useState(users)
 
+
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await fetch('https://jsonplaceholder.typicode.com/users');
-        const usersData = await response.json();
+        const response = await fetch('https://randomuser.me/api/?results=100&inc=name,email,picture,location,login,cell');
+        const { results } = await response.json();
+        const usersData = results.map(user => {
+          return {
+            id: user.login.uuid,
+            name: `${user.name.first} ${user.name.last}`,
+            email: user.email,
+            cell: user.cell,
+            picture: user.picture.large,
+            location: {
+              country: user.location.country,
+              state: user.location.state,
+              city: user.location.city,
+            }
+          };
+        });
+
         setUsers(usersData);
+
       } catch (error) {
         console.log('ERROR: ', error);
         throw new Error('Failed to fetch users data from API');
@@ -24,12 +41,14 @@ const App = () => {
     fetchUsers();
   }, []);
 
+
   useEffect(() => {
     const newFilteredUsers = users.filter(user => {
       return user.name.toLocaleLowerCase().includes(searchField);
     });
 
     setFilteredUsers(newFilteredUsers);
+
   }, [users, searchField])
 
 
