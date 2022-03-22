@@ -4,4 +4,39 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-gap: 20px;
+  position: absolute;
+  top: 250px;
+
+  justify-content: center;
+}
+
+@media(max-width: 1400px) {
+  .card-list {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media(max-width: 1000px) {
+  .card-list {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media(max-width: 740px) {
+  .card-list {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media(max-width: 650px) {
+  .card-list {
+    grid-template-columns: 1fr;
+    top: 150px;
+  }
+}
+
+@media(max-width: 460px) {
+  .card-list {
+    top: 100px;
+  }
 }
